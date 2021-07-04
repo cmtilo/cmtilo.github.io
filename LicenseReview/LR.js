@@ -1,11 +1,12 @@
 const form = document.querySelector('form')
 const options_left = document.getElementsByName('opt_usage_l')
 const options_right = document.getElementsByName('opt_usage_r')
-let lString = ''
-let rString = ''  
+ 
 
 form.addEventListener('submit', (e) => {
   e.preventDefault()
+  let lString = ''
+  let rString = '' 
   for (l of options_left) {
     if (l.checked) {
       lString += l.value      
@@ -15,7 +16,8 @@ form.addEventListener('submit', (e) => {
     if (r.checked) {
       rString += r.value
     }
-  }  
+  }
+  console.log(lString, rString)
   console.log(findMark(lString, rString))  
   changeResult(findMark(lString, rString))
 })
@@ -31,43 +33,43 @@ function changeResult(mark) {
 
 const ANSWER = {
   blank: {
-    ans: lString + ' → ' + rString,
+    ans: '',
     des: '此為同類組，無須辦理變更使用執照。'
   },
   cross: {
-    ans: lString + ' → ' + rString,
+    ans: '',
     des: '須辦理變更使用執照，請依規定委託開業建築師辦理。但已變更為他種類組使用之建築物，擬恢復為原領使用執照核定H2類組住宅或集合住宅，且使用樓地板面積未達300平方公尺者，免辦理變更使用執照。'
   },
   five: {
-    ans: lString + ' → ' + rString,
+    ans: '',
     des: '變更使用範圍之總樓地板面積未達500平方公尺者；依規定變更為D1類組者，限變更為建築物使用類組及變更使用辦法第二條附表二所定室內兒童樂園、健身房、室內操練場、室內體育場所、室內高爾夫球練習場及健身休閒中心等使用項目；變更為D2類組者，限會議廳、展示廳、圖書館、文康中心、集會堂(場)及社區(里)活動中心等使用項目。'
   },
   asterisk: {
-    ans: lString + ' → ' + rString,
+    ans: '',
     des: '於地面一層面積在500平方公尺以下或設於二層至五層之任一層面積在300平方公尺以下，且樓梯寬度達1.2公尺以上、分間牆及室內裝修材料符合建築技術規則之規定者，免辦理變更使用執照。'
   },
   circle: {
-    ans: lString + ' → ' + rString,
+    ans: '',
     des: '於第一層使用，且變更使用範圍之總樓地板面積未達300平方公尺者，免辦理變更使用執照。'
   },
   three: {
-    ans: lString + ' → ' + rString,
+    ans: '',
     des: '變更使用範圍之總樓地板面積未達300平方公尺者，免辦理變更使用執照。300平方公尺以上者須辦理變更使用執照，請依規定委託開業建築師辦理。'
   },
   two: {
-    ans: lString + ' → ' + rString,
+    ans: '',
     des: '建築物附建樓地板面積未達200平方公尺之防空避難設備，依「桃園市一定規模以下建築物免辦理變更使用執照管理辦法」第三條規定程序兼作他種用途之臨時使用者，免辦理變更使用執照。'
   },
   doubleCircles: {
-    ans: lString + ' → ' + rString,
+    ans: '',
     des: '限於第一層供汽(機)車修理(保養)場、洗車場使用，且變更使用範圍之總樓地板面積未達200平方公尺者，免辦理變更使用執照。'
   },
   one: {
-    ans: lString + ' → ' + rString,
+    ans: '',
     des: '限於第一層使用，且變更使用範圍之總樓地板面積未達100平方公尺者；C1、C2類組以工廠依消防法規定兼作I類別之公共危險物品儲存場所為限。'
   },
   triangle: {
-    ans: lString + ' → ' + rString,
+    ans: '',
     des: '供餐廳、飲食店、飲料店、理髮場所、按摩場所、美容院等使用項目，且變更使用範圍之總樓地板面積未達300平方公尺；或供其它使用項目使用，其變更使用範圍之總樓地板面積未達500平方公尺者，免辦理變更使用執照。'
   }
 }
