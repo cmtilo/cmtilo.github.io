@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel='stylesheet' href='./style.css'>
+  <title>建物變更使用執照試算</title>
+</head>
+<body>
+  <h1>建物變更使用執照試算</h1>
+  <div class='description'>
+    <h3>    
+      情形一：我跟房東租了某層樓想作補習班...需要辦＂變更使用執照＂嗎...？<br/>
+      情形二：我的房子原本是自住，現在想開業作診所可以嗎？建物要辦＂變更使用執照＂嗎？<br/>
+      情形三：我樓上想改作辦公室，聽說有一定規模以下免辦理變更使用執照的規定，我有符合嗎?<br/>
+      <br/>
+    </h3>
+    <h2>
+      原來～蓋好的建築物都有一張「使用執照」可以看出建物原用途，如果想改用途就要辦＂變更使用執照＂。
+      但是當變更使用用途的面積小於一定範圍，可簡化程序不用辦理變更使用執照。<br/>
+      <br/>
+      現在，請拿出您的（或房東的）使用執照，看看上面登載樓層用途為何？<br/>
+      您的情形是否須辦理"變更使用執照"程序呢...一起來試算吧
+    </h2>
+  </div>
+
+
+  <section class='situation'>
+    <form id='form'>
+      <div class='section_title'>試算選項</div>
+
+      <div class='section_content'>
+        <div class='content_row'>
+          <div class='check_item'></div>
+          <div class='top_item'>原使用執照</div>
+          <div class='top_item'>預計變更</div>
+        </div>
+        <div class='content_row hide'>
+          <div class='check_item'>樓層</div>
+          <div class='options'>
+            <label><input name='opt_floor_l' value='1F' type='radio' />1F</label>
+            <label><input name='opt_floor_l' value='2F' type='radio' />2F</label>
+            <label><input name='opt_floor_l' value='3F' type='radio' />3F</label>
+            <label><input name='opt_floor_l' value='4F' type='radio' />4F</label>
+            <label><input name='opt_floor_l' value='5F' type='radio' />5F</label><br/>
+            <label><input name='opt_floor_l' value='6F' type='radio' />6F以上</label>
+          </div>
+          <div class='options options_right'>
+            <label><input name='opt_floor_r' value='1F' type='radio' />1F</label>
+            <label><input name='opt_floor_r' value='2F' type='radio' />2F</label>
+            <label><input name='opt_floor_r' value='3F' type='radio' />3F</label>
+            <label><input name='opt_floor_r' value='4F' type='radio' />4F</label>
+            <label><input name='opt_floor_r' value='5F' type='radio' />5F</label><br/>
+            <label><input name='opt_floor_r' value='6F' type='radio' />6F以上</label>
+          </div>
+        </div>
+        <div class='content_row'>
+          <div class='check_item'>類組<br/>(用途)</div>
+          <div class='options options_left'>
+            <label><input name='opt_usage_l' value='A1' type='radio' />A1</label>
+            <label><input name='opt_usage_l' value='A2' type='radio' />A2</label><br/>
+            <label><input name='opt_usage_l' value='B1' type='radio' />B1</label>
+            <label><input name='opt_usage_l' value='B2' type='radio' />B2</label>
+            <label><input name='opt_usage_l' value='B3' type='radio' />B3</label>
+            <label><input name='opt_usage_l' value='B4' type='radio' />B4</label><br/>
+            <label><input name='opt_usage_l' value='C1' type='radio' />C1</label>
+            <label><input name='opt_usage_l' value='C2' type='radio' />C2</label><br/>
+            <label><input name='opt_usage_l' value='D1' type='radio' />D1</label>
+            <label><input name='opt_usage_l' value='D2' type='radio' />D2</label>
+            <label><input name='opt_usage_l' value='D3' type='radio' />D3</label>
+            <label><input name='opt_usage_l' value='D4' type='radio' />D4</label>
+            <label><input name='opt_usage_l' value='D5' type='radio' />D5</label><br/>
+            <label><input name='opt_usage_l' value='E' type='radio' />E</label><br/>
+            <label><input name='opt_usage_l' value='F1' type='radio' />F1</label>
+            <label><input name='opt_usage_l' value='F2' type='radio' />F2</label>
+            <label><input name='opt_usage_l' value='F3' type='radio' />F3</label>
+            <label><input name='opt_usage_l' value='F4' type='radio' />F4</label><br/>
+            <label><input name='opt_usage_l' value='G1' type='radio' />G1</label>
+            <label><input name='opt_usage_l' value='G2' type='radio' />G2</label>
+            <label><input name='opt_usage_l' value='G3' type='radio' />G3</label><br/>
+            <label><input name='opt_usage_l' value='H1' type='radio' />H1</label>
+            <label><input name='opt_usage_l' value='H2' type='radio' />H2</label><br/>
+            <label><input name='opt_usage_l' value='I' type='radio' />I</label><br/>
+            <label><input name='opt_usage_l' value='O' type='radio' />防空避難設備</label><br/>
+          </div>
+          <div class='options options_right'>
+            <label><input name='opt_usage_r' value='A1' type='radio' />A1</label>
+            <label><input name='opt_usage_r' value='A2' type='radio' />A2</label><br/>
+            <label><input name='opt_usage_r' value='B1' type='radio' />B1</label>
+            <label><input name='opt_usage_r' value='B2' type='radio' />B2</label>
+            <label><input name='opt_usage_r' value='B3' type='radio' />B3</label>
+            <label><input name='opt_usage_r' value='B4' type='radio' />B4</label><br/>
+            <label><input name='opt_usage_r' value='C1' type='radio' />C1</label>
+            <label><input name='opt_usage_r' value='C2' type='radio' />C2</label><br/>
+            <label><input name='opt_usage_r' value='D1' type='radio' />D1</label>
+            <label><input name='opt_usage_r' value='D2' type='radio' />D2</label>
+            <label><input name='opt_usage_r' value='D3' type='radio' />D3</label>
+            <label><input name='opt_usage_r' value='D4' type='radio' />D4</label>
+            <label><input name='opt_usage_r' value='D5' type='radio' />D5</label><br/>
+            <label><input name='opt_usage_r' value='E' type='radio' />E</label><br/>
+            <label><input name='opt_usage_r' value='F1' type='radio' />F1</label>
+            <label><input name='opt_usage_r' value='F2' type='radio' />F2</label>
+            <label><input name='opt_usage_r' value='F3' type='radio' />F3</label>
+            <label><input name='opt_usage_r' value='F4' type='radio' />F4</label><br/>
+            <label><input name='opt_usage_r' value='G1' type='radio' />G1</label>
+            <label><input name='opt_usage_r' value='G2' type='radio' />G2</label>
+            <label><input name='opt_usage_r' value='G3' type='radio' />G3</label><br/>
+            <label><input name='opt_usage_r' value='H1' type='radio' />H1</label>
+            <label><input name='opt_usage_r' value='H2' type='radio' />H2</label><br/>
+            <label><input name='opt_usage_r' value='I' type='radio' />I</label><br/>
+          </div>   
+        </div>
+        <div class='content_row hide'>
+          <div class='check_item'>面積</div>
+          <div class='options'>          
+            <label><input name='options_area' value='1' type='radio' />500平方公尺以上</label>
+            <label><input name='options_area' value='2' type='radio' />500平方公尺以下</label>
+          </div>
+          <div class='options options_right'>          
+            <label><input name='options_area' value='1' type='radio' />500平方公尺以上</label>
+            <label><input name='options_area' value='2' type='radio' />500平方公尺以下</label>
+          </div>
+        </div>
+  
+  
+      </div>
+      <div class='section_btn'><input type='submit' class='btn' value='送出'></input></div>
+  
+    </form>
+  </section>
+
+  <section class='result hide'>
+    <div class='section_title'>試算結果</div>
+
+    <div class='answer'>
+      <div class='ans_ans'>A1 → A1</div>
+      <div class='ans_des'>同類組更動</div>
+      <p>※ 此試算結果僅供參考之用，個案特殊情形請洽開業建築師或市府1樓建築師免費諮詢櫃台。</p>
+    </div>
+    
+  </section>
+  <footer>Copyright © 2021 cmtilo. All rights reserved.</footer>
+
+  <script type='text/javascript' src='LR.js'></script>
+</body>
+</html>
