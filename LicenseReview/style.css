@@ -1,0 +1,125 @@
+* {
+  font-family: 'Lucida console', '微軟正黑體';
+}
+html, body {
+  width: 100%;  
+  background-color: #fad312;
+}
+h1 {
+  text-align: center;
+  margin-top: 40px;
+  color: white;
+}
+h3 {
+  line-height: 1.5em;
+}
+h2 {
+  color: rgb(63, 60, 56);
+}
+footer {
+  text-align: center;
+}
+
+.description {
+  width: 800px;
+  margin: 20px auto;
+  padding: 10px 32px;
+}
+
+section {
+  width: 960px;
+  margin: 20px auto;
+  padding: 32px;
+  box-shadow: 1.8px 2.4px 5px 0 rgba(0, 0, 0, 0.3);
+  background-color: white;
+  border-radius: 10px;  
+}
+
+.section_title {
+  font-size: 36px;
+  margin: 15px 0px;
+  border-left: #fad312 10px groove;
+  padding: 0 10px;
+}
+
+.content_row {
+  display: flex;
+  align-items: flex-start;
+  padding: 20px 10px;
+}
+.top_item {
+  width: 410px;
+  border-bottom: #fad312 1px solid;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 0.5em;
+  margin: 0 5px;
+}
+
+.check_item {
+  width: 100px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.options_right {
+  border-left: #fad312 5px double;
+}
+.options {
+  width: 420px;
+  font-size: 20px;
+}
+
+label {
+  margin: 10px;  
+}
+
+.section_content input {
+  width: 20px;
+  height: 20px;
+  border: #fad312 1px solid;
+  margin-bottom: 10px;  
+}
+.section_btn {
+  width: 150px;
+  margin: 20px auto;
+}
+
+.btn {
+  padding: 13px 20px;
+  border-style: none;
+  border-radius: 3px;
+  background-color: #fad312;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  width: 150px;
+  text-align: center;  
+}
+
+.btn:hover {
+  transform: translate(3px,3px);
+}
+
+.hide {
+  display: none;
+}
+
+
+.answer {
+  font-size: 28px;
+  padding: 20px 42px;
+}
+.ans_ans{
+  font-weight: bold;
+  margin: 10px 0;
+}
+.ans_des {
+  margin: 20px 0;
+}
+.answer p {
+  font-size: 18px;
+  color: #666;
+}
