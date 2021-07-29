@@ -1,0 +1,187 @@
+  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <style type="text/css">
+       @charset "UTF-8";
+    * {
+      font-family: 微軟正黑體;
+    }
+
+    a, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+      font-weight: bold;
+    }
+
+    header.jumbotron {
+      text-align: center;
+      background-image: url(https://www.artic.edu/iiif/2/8fa4d1dd-b05f-eb8d-b83f-7b5dd65642db/full/843,/0/default.jpg);
+      background-size: cover;
+      background-position: center center;
+      padding: 170px;
+      color: black;
+    }
+
+    section {
+      text-align: center;
+      padding: 80px 0px;
+    }
+    section .section-heading {
+      font-size: 36px;
+      margin-top: 0px;
+    }
+    section .section-subheading {
+      font-size: 16px;
+    }
+
+    .col-sea {
+      padding: 90px;
+    }
+    .col-sea img {
+      width: 100%;
+      border-radius: 50%;
+    }
+
+    section.story {
+      background-color: #eee;
+    }
+    section.story .col-md-6 {
+      padding: 20px;
+    }
+    section.story .icon-sea {
+      width: 80px;
+      margin-bottom: 20px;
+    }
+
+    section.pictures {
+      padding: 0px;
+      color: white;
+    }
+    section.pictures .col-md-6 {
+      padding: 150px;
+      cursor: pointer;
+    }
+    section.pictures .col-md-6:hover p {
+      opacity: 0.7;
+    }
+    section.pictures .col-md-6:hover:before {
+      filter: brightness(0.5);
+      background-size: auto 120%;
+    }
+    section.pictures .col-md-6:before {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: -1;
+      transition-duration: 0.5s;
+      background-position: center center;
+    }
+    section.pictures .pic1:before {
+      background-image: url(https://www.artic.edu/iiif/2/2b30e687-4526-f487-cedc-448b3188fd19/full/843,/0/default.jpg);
+      background-size: auto 100%;
+    }
+    section.pictures .pic2:before {
+      background-image: url(https://www.artic.edu/iiif/2/0f1cc0e0-e42e-be16-3f71-2022da38cb93/full/843,/0/default.jpg);
+      background-size: auto 100%;
+    }
+    section.pictures p {
+      opacity: 0.4;
+      transition-duration: 0.5s;
+    }
+
+    section.ask {
+      background-color: #01233C;
+      color: white;
+    }  
+  </style>
+  <title>桃園市建築物公安申報</title>
+</head>
+<body>
+<header class="jumbotron">
+  <div class="container">
+    <h3>建築物公共安全</h3>
+    <h1>快來，申報</h1>
+  </div>
+</header>
+<section class="intro">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h2 class="section-heading">上一次公安申報是什麼時候呢?</h2>
+        <h3 class="section-subheading text-muted">建築物公共安全檢查簽證及申報辦法</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 col-sea"><img src="https://i.pinimg.com/736x/b3/cc/d5/b3ccd57b054a73af1a0d281265b54ec8.jpg" alt=""/>
+        <h4>類組</h4>
+        <h6 class="text-muted">依照使用類組A類~H類</h6>
+      </div>
+      <div class="col-md-4 col-sea"><img src="https://i.pinimg.com/736x/b3/cc/d5/b3ccd57b054a73af1a0d281265b54ec8.jpg" alt="" height="height"/>
+        <h4>規模</h4>
+        <h6 class="text-muted">依建物高度、樓地板面積</h6>
+      </div>
+      <div class="col-md-4 col-sea"><img src="https://i.pinimg.com/736x/b3/cc/d5/b3ccd57b054a73af1a0d281265b54ec8.jpg" alt=""/>
+        <h4>期間</h4>
+        <h6 class="text-muted">有不同申報頻率跟期間</h6>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="story">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12"><img class="icon-sea" src="https://www.seekpng.com/png/detail/381-3812018_qualified-icon-5-star-rating-icon-png.png" alt=""/>
+        <h2 class="section-heading">申報檢查項目</h2>
+        <h3 class="section-subheading text-muted">要享受安全，是需要每個人共同努力的</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-lg-6">
+        <p class="h2">防火避難設施類</p>
+        <p class="content">(1)防火區劃、(2)非防火區劃分間牆、(3)內部裝修材料、(4)避難層出入口、(5)避難層以外樓層出入口、(6)走廊（室內通路）、(7)直通樓梯、(8)安全梯、(9)特別安全梯、(10)屋頂避難平臺、(11)緊急進口。</p>
+      </div>
+      <div class="col-md-6 col-lg-6">
+        <p class="h2">設備安全類</p>
+        <p class="content">(1)昇降設備、(2)避雷設備、(3)緊急供電系統、(4)特殊供電、(5)空調風管、(6)燃氣設備。</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="pictures">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6 pic1">
+        <div class="text-panel">     
+          <h1>全國建築管理資訊系統入口網</h1>
+          <p>查詢標準檢查專業機構或人員、耐震能力評估檢查機構資訊</p>
+        </div>
+      </div>
+      <div class="col-md-6 pic2">
+        <div class="text-panel">
+          <h1>桃園市政府建築管理處</h1>
+          <p>本市建築物公共安全檢查申報之主管建築機關</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>
+<section class="ask">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h2 class="section-heading">你還有什麼疑問呢?</h2>
+        <h3 class="section-subheading text-muted">說說關於你，關於建物，關於公安的疑惑</h3>
+        <input class="form-control"/>
+      </div>
+    </div>
+  </div>
+</section>
