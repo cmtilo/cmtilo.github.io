@@ -2,7 +2,6 @@ const form = document.querySelector('form')
 const options_left = document.getElementsByName('opt_usage_l')
 const options_right = document.getElementsByName('opt_usage_r')
  
-
 form.addEventListener('submit', (e) => {
   e.preventDefault()
   let lString = ''
@@ -17,15 +16,16 @@ form.addEventListener('submit', (e) => {
       rString += r.value
     }
   }
-  console.log(lString, rString)
-  console.log(findMark(lString, rString))  
-  changeResult(findMark(lString, rString))
+  console.log(lString, rString)  
+  console.log(findMark(lString, rString))
+  changeResult(findMark(lString, rString), lString, rString)
 })
 
 
-function changeResult(mark) {
+function changeResult(mark, lString, rString) {
   const { ans, des } = ANSWER[mark]
   document.querySelector('.result').classList.remove('hide')
+  document.querySelector('.ans_val').innerText = `${lString} → ${rString}`
   document.querySelector('.ans_ans').innerText = ans
   document.querySelector('.ans_des').innerText = des
   window.scrollTo(0,document.body.scrollHeight)
@@ -33,12 +33,16 @@ function changeResult(mark) {
 
 const ANSWER = {
   blank: {
-    ans: '',
-    des: '此為同類組，無須辦理變更使用執照。'
+    ans: '此為同類組，無須辦理變更使用執照。',
+    des: ''
   },
   cross: {
-    ans: '',
-    des: '須辦理變更使用執照，請依規定委託開業建築師辦理。但已變更為他種類組使用之建築物，擬恢復為原領使用執照核定H2類組住宅或集合住宅，且使用樓地板面積未達300平方公尺者，免辦理變更使用執照。'
+    ans: '須辦理變更使用執照，請依規定委託開業建築師辦理。',
+    des: ''
+  },
+    crossH2: {
+    ans: '須辦理變更使用執照，請依規定委託開業建築師辦理。',
+    des: '但已變更為他種類組使用之建築物，擬恢復為原領使用執照核定H2類組住宅或集合住宅，且使用樓地板面積未達300平方公尺者，免辦理變更使用執照。'
   },
   five: {
     ans: '',
@@ -46,23 +50,23 @@ const ANSWER = {
   },
   asterisk: {
     ans: '',
-    des: '於地面一層面積在500平方公尺以下或設於二層至五層之任一層面積在300平方公尺以下，且樓梯寬度達1.2公尺以上、分間牆及室內裝修材料符合建築技術規則之規定者，免辦理變更使用執照。'
+    des: '限設於地面一層面積在500平方公尺以下或設於二層至五層之任一層面積在300平方公尺以下，且樓梯寬度達1.2公尺以上、分間牆及室內裝修材料符合建築技術規則之規定者，免辦理變更使用執照。'
   },
   circle: {
-    ans: '',
-    des: '於第一層使用，且變更使用範圍之總樓地板面積未達300平方公尺者，免辦理變更使用執照。'
+    ans: '限於第一層使用，且變更使用範圍之總樓地板面積未達300平方公尺者，免辦理變更使用執照。',
+    des: '非上述情形者，須辦理變更使用執照，請依規定委託開業建築師辦理。'
   },
   three: {
-    ans: '',
-    des: '變更使用範圍之總樓地板面積未達300平方公尺者，免辦理變更使用執照。300平方公尺以上者須辦理變更使用執照，請依規定委託開業建築師辦理。'
+    ans: '變更使用範圍之總樓地板面積未達300平方公尺者，免辦理變更使用執照。',
+    des: '300平方公尺以上者，須辦理變更使用執照，請依規定委託開業建築師辦理。'
   },
   two: {
     ans: '',
     des: '建築物附建樓地板面積未達200平方公尺之防空避難設備，依「桃園市一定規模以下建築物免辦理變更使用執照管理辦法」第三條規定程序兼作他種用途之臨時使用者，免辦理變更使用執照。'
   },
   doubleCircles: {
-    ans: '',
-    des: '限於第一層供汽(機)車修理(保養)場、洗車場使用，且變更使用範圍之總樓地板面積未達200平方公尺者，免辦理變更使用執照。'
+    ans: '限於第一層供汽(機)車修理(保養)場、洗車場使用，且變更使用範圍之總樓地板面積未達200平方公尺者，免辦理變更使用執照。',
+    des: '非上述情形者，須辦理變更使用執照，請依規定委託開業建築師辦理。'
   },
   one: {
     ans: '',
@@ -194,6 +198,8 @@ function findMark (s1, s2) {
         s1 === 'G1' || s1 === 'G2' ||
         s1 === 'G3' || s1 === 'H1') {
       mark = 'asterisk'
+    } else {
+      mark = 'crossH2'
     }
   }
   if (s2 === 'I') {
