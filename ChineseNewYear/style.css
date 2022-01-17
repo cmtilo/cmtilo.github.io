@@ -1,0 +1,50 @@
+section,
+footer {
+  margin: 50px auto;
+  text-align: center;
+  font-family: Arial, '微軟正黑體';
+}
+section {
+  font-size: 30px;
+}
+
+input {
+  font-size: 20px;
+  border: solid 2px #eee;
+  border-radius: 10px;
+  margin: 10px;
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+}
+
+.red {
+  background: #c92c20;
+}
+
+.yellow {
+  background: #f2e41b;
+}
+
+.white {
+  background: #ededed;
+}
+
+.green {
+  background: #52a125;
+}
+
+.result {
+  background: #f2ebd8;
+  border-radius: 5px;
+  width: 200px;
+  padding: 20px;
+}
+.answer {
+  font-weight: bold;
+  margin: 5px auto;
+}
+
+.hide {
+  visibility: hidden;
+}
