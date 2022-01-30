@@ -13,13 +13,13 @@ function changeResult(values) {
   console.log(color == 'red')
 
   if (color == 'red') {
-    ans = '廁所馬桶水箱'
+    ans = '廁所洗手台櫃'
   } else if (color == 'yellow') {
-    ans = '頂樓抽風扇'
+    ans = '神明廳小冰箱'
   } else if (color == 'white') {
     ans = '陽台三角櫃'
   } else {
-    ans = '神明廳小冰箱'
+    ans = '頂樓抽風扇'
   }
   document.querySelector('.result').classList.remove('hide')
   document.querySelector('.answer').innerText = ans
