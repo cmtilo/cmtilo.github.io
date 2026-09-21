@@ -1,0 +1,6 @@
+{
+  "name": "八德三號 排水接管工程實錄",
+  "description": "八德三號排水接管工程實錄互動展示網頁，具備滑鼠跟隨視差動效、滾動三維管線疊圖模擬與工程影音紀錄",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
