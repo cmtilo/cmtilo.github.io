@@ -1,192 +1,21 @@
-
-<!DOCTYPE html>
-<html lang="zh-TW">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>八德三號接管工程</title>
-    <!-- 引入 GSAP 與 ScrollTrigger 動畫庫 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    
-    <style>
-        /* 基礎樣式重置 */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            background-color: #0a0a0a; 
-            color: #ffffff; 
-            font-family: 'Helvetica Neue', Arial, 'LiHei Pro', '微軟正黑體', sans-serif; 
-            overflow-x: hidden;
-        }
-        
-        /* 每個區塊基本設定為滿版畫面 */
-        section {
-            position: relative;
-            width: 100vw;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        /* 文字標題樣式 */
-        .title-overlay {
-            position: absolute;
-            z-index: 10;
-            font-size: 3rem;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
-        }
-
-        /* 影片滿版並裁切 */
-        video, .bg-image {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            transform: translateX(-50%) translateY(-50%);
-            object-fit: cover;
-            opacity: 0.8;
-        }
-
-        /* SECTION 4 : 3D 疊圖專用樣式 */
-        .sec4-3d-container {
-            perspective: 1200px; /* 創造 3D 透視空間 */
-            width: 100vw;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .scene {
-            position: relative;
-            width: 60vw;
-            max-width: 800px;
-            aspect-ratio: 16/9;
-            transform-style: preserve-3d; /* 讓子元素也能在 3D 空間中 */
-        }
-        .layer {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            object-fit: cover;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            border: 2px solid rgba(255,255,255,0.1);
-        }
-        /* 讓 5F 在最上層 */
-        .layer-5f { z-index: 3; }
-        .layer-4f { z-index: 2; }
-        .layer-3f { z-index: 1; }
-    </style>
-</head>
-<body>
-
-    <!-- SECTION 1 -->
-    <section id="sec1">
-        <h1 class="title-overlay">八德三號接管工程</h1>
-        <!-- 這裡可換成投影片1的圖片 -->
-        <img src="assets/投影片1.jpg" class="bg-image" alt="投影片1" onerror="this.style.display='none'"> 
-    </section>
-
-    <!-- SECTION 2 -->
-    <section id="sec2" class="video-section">
-        <video src="assets/投影片2.mp4" muted playsinline loop preload="none"></video>
-    </section>
-
-    <!-- SECTION 3 -->
-    <section id="sec3" class="video-section">
-        <video src="assets/投影片3.mp4" muted playsinline loop preload="none"></video>
-    </section>
-
-    <!-- SECTION 4 : 3D疊圖 -->
-    <section id="sec4">
-        <div class="sec4-3d-container">
-            <div class="scene">
-                <!-- 確保圖片路徑正確 -->
-                <img src="assets/投影片4_5F.jpg" class="layer layer-5f" alt="5F" onerror="this.style.background='#ff5555'">
-                <img src="assets/投影片4_4F.jpg" class="layer layer-4f" alt="4F" onerror="this.style.background='#55ff55'">
-                <img src="assets/投影片4_3F.jpg" class="layer layer-3f" alt="3F" onerror="this.style.background='#5555ff'">
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 5 -->
-    <section id="sec5" class="video-section">
-        <video src="assets/投影片5.mp4" muted playsinline loop preload="none"></video>
-    </section>
-
-    <!-- SECTION 6 -->
-    <section id="sec6" class="video-section">
-        <video src="assets/投影片6.mp4" muted playsinline loop preload="none"></video>
-    </section>
-
-    <!-- SECTION 7 -->
-    <section id="sec7">
-        <img src="assets/投影片7.jpg" class="bg-image" alt="投影片7" onerror="this.style.display='none'">
-    </section>
-
-    <!-- SECTION 8 -->
-    <section id="sec8" class="video-section">
-        <video src="assets/投影片11.mp4" muted playsinline loop preload="none"></video>
-    </section>
-
-    <!-- SECTION 9 -->
-    <section id="sec9" class="video-section">
-        <video src="assets/投影片12.mp4" muted playsinline loop preload="none"></video>
-    </section>
-
-
-    <script>
-        // 註冊 GSAP ScrollTrigger 外掛
-        gsap.registerPlugin(ScrollTrigger);
-
-        /* === 1. 影片捲動自動播放與暫停功能 === */
-        const videoSections = document.querySelectorAll('.video-section');
-        videoSections.forEach(section => {
-            const video = section.querySelector('video');
-            ScrollTrigger.create({
-                trigger: section,
-                start: "top 50%", // 當區塊頂部到達螢幕中間時觸發
-                end: "bottom 50%", // 當區塊底部離開螢幕中間時結束
-                onEnter: () => video.play(),
-                onLeave: () => video.pause(),
-                onEnterBack: () => video.play(),
-                onLeaveBack: () => video.pause()
-            });
-        });
-
-        /* === 2. SECTION 4 的平面轉 3D 疊圖特效 === */
-        // 設定初始狀態（完全重疊、無 3D 旋轉）
-        gsap.set('.scene', { rotationX: 0, rotationZ: 0 });
-        gsap.set('.layer', { z: 0 });
-
-        // 建立捲動動畫時間軸
-        const tl3d = gsap.timeline({
-            scrollTrigger: {
-                trigger: "#sec4",
-                start: "top top",      // 當 Sec4 頂部碰到螢幕頂部時開始
-                end: "+=150%",         // 往下捲動 1.5 倍螢幕高度的距離來完成動畫
-                scrub: 1,              // 讓動畫跟隨滑鼠滾動進度 (數值為延遲平滑度)
-                pin: true              // 固定住這個區塊，直到動畫播完才讓使用者往下滾
-            }
-        });
-
-        // 步驟一：將平面傾斜轉為 3D 視角
-        tl3d.to('.scene', { 
-            rotationX: 60,  // 向後倒 60 度
-            rotationZ: -30, // 稍微旋轉角度看起來更立體
-            duration: 1,
-            ease: "power1.inOut"
-        }, 0); // '0' 表示從時間軸最一開始同時進行
-
-        // 步驟二：同時將圖片上下拉開 (5F往上浮、3F往下沉)
-        tl3d.to('.layer-5f', { z: 120, duration: 1, ease: "power1.inOut" }, 0)
-            .to('.layer-4f', { z: 0,   duration: 1, ease: "power1.inOut" }, 0) // 4F在中間不動
-            .to('.layer-3f', { z: -120, duration: 1, ease: "power1.inOut" }, 0);
-    </script>
-</body>
+<!doctype html>
+<html lang="zh-TW" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>八德三號 排水接管工程實錄</title>
+    <meta name="description" content="八德三號排水接管工程實錄互動展示網頁，具備滑鼠跟隨視差動效、滾動三維管線疊圖模擬與工程影音紀錄" />
+    <meta property="og:title" content="八德三號 排水接管工程實錄" />
+    <meta property="og:description" content="八德三號排水接管工程實錄互動展示網頁，具備滑鼠跟隨視差動效、滾動三維管線疊圖模擬與工程影音紀錄" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-slate-950 text-slate-100 selection:bg-cyan-500/30 selection:text-cyan-200">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
 
