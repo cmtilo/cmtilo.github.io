@@ -1,21 +1,333 @@
-<!doctype html>
-<html lang="zh-TW" class="scroll-smooth">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>八德三號 排水接管工程實錄</title>
-    <meta name="description" content="八德三號智慧排水接管與洗管工程全紀錄互動展示網頁，具備視差滾動、3D 樓層管線疊圖、明管施工模擬比對與全景空拍展演。" />
-    <meta property="og:title" content="八德三號 排水接管工程實錄" />
-    <meta property="og:description" content="八德三號智慧排水接管與洗管工程全紀錄互動展示網頁，具備視差滾動、3D 樓層管線疊圖、明管施工模擬比對與全景空拍展演。" />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
-  </head>
-  <body class="bg-[#0b1120] text-slate-100 antialiased selection:bg-cyan-500 selection:text-white">
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
+    
+    <!-- GSAP 動畫庫與 ScrollTrigger 套件 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <style>
+        /* 基礎全域樣式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+        }
 
+        body {
+            background-color: #0b1120;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        section {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            letter-spacing: 2px;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.8);
+            color: #38bdf8;
+        }
+
+        .img-card, video {
+            max-width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            transition: transform 0.3s ease;
+        }
+
+        /* ===== Hero 開場 (投影片1) ===== */
+        #hero {
+            background: linear-gradient(rgba(11, 17, 32, 0.4), rgba(11, 17, 32, 0.8)), 
+                        url('投影片1.JPG') center/cover no-repeat;
+        }
+
+        #hero h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            letter-spacing: 5px;
+        }
+
+        #hero p {
+            font-size: 1.5rem;
+            color: #e2e8f0;
+        }
+
+        /* ===== 第 1 區塊：戶內通管 & 共管洗管 ===== */
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2col { grid-template-columns: 1fr; }
+        }
+
+        .media-preview-container {
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .play-btn-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            background: rgba(56, 189, 248, 0.85);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
+            pointer-events: none;
+            transition: transform 0.2s ease;
+        }
+
+        .play-btn-overlay::after {
+            content: "";
+            display: block;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 12px 0 12px 22px;
+            border-color: transparent transparent transparent #ffffff;
+            margin-left: 4px;
+        }
+
+        .media-preview-container:hover .play-btn-overlay {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        /* ===== 第 2 區塊：3D 平面圖疊圖 ===== */
+        #section2 {
+            height: 250vh;
+            align-items: flex-start;
+        }
+
+        .sticky-wrapper {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .stack-container {
+            position: relative;
+            width: 90%;
+            max-width: 850px;
+            height: 500px;
+            perspective: 1200px;
+        }
+
+        .stack-item {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.7);
+            background: rgba(15, 23, 42, 0.9);
+        }
+
+        .layer-base { z-index: 1; }
+        .layer-3f   { z-index: 2; opacity: 0; transform: translateY(60px) rotateX(15deg); }
+        .layer-4f   { z-index: 3; opacity: 0; transform: translateY(120px) rotateX(15deg); }
+        .layer-5f   { z-index: 4; opacity: 0; transform: translateY(180px) rotateX(15deg); }
+
+        /* ===== 第 3、4、5 區塊：影片展演 ===== */
+        .video-box {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+            background: #000;
+        }
+
+        video {
+            width: 100%;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 最上方：投影片1 -->
+    <section id="hero">
+        <div class="container">
+            <h1>八德三號</h1>
+            <p>排水接管工程完整實錄</p>
+        </div>
+    </section>
+
+    <!-- 第一區塊：戶內通管 & 共管洗管 -->
+    <section id="section1">
+        <div class="container">
+            <h2 class="section-title">第一區塊：戶內通管與水刀洗共管</h2>
+            <div class="grid-2col">
+                <div>
+                    <img src="投影片2.JPG" alt="戶內通管" class="img-card">
+                    <p style="margin-top: 10px; color: #cbd5e1;">戶內支管通管作業</p>
+                </div>
+                <div>
+                    <div class="media-preview-container" id="video3-trigger" onclick="playVideo3()">
+                        <img src="投影片3.JPG" id="video3-poster" alt="共管洗管預覽" class="img-card">
+                        <div class="play-btn-overlay" id="video3-btn"></div>
+                        <video id="video3-player" style="display:none;" controls playsinline preload="metadata">
+                            <source src="投影片3.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <p style="margin-top: 10px; color: #cbd5e1;">水刀洗共管（點擊圖片觀看影片）</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 第二區塊：3D 平面圖疊圖 -->
+    <section id="section2">
+        <div class="sticky-wrapper">
+            <h2 class="section-title">第二區塊：樓層管線配置 (3D疊圖)</h2>
+            <div class="stack-container">
+                <img src="投影片4.JPG" class="stack-item layer-base" alt="全區樓層配置底圖">
+                <img src="投影片4_3F.JPG" class="stack-item layer-3f" alt="3F 管線配置">
+                <img src="投影片4_4F.JPG" class="stack-item layer-4f" alt="4F 管線配置">
+                <img src="投影片4_5F.JPG" class="stack-item layer-5f" alt="5F 管線配置">
+            </div>
+        </div>
+    </section>
+
+    <!-- 第三區塊：接明管規劃 -->
+    <section id="section3">
+        <div class="container">
+            <h2 class="section-title">第三區塊：接明管規劃與模擬</h2>
+            <div class="grid-2col" style="margin-top: 20px;">
+                <div class="video-box">
+                    <video id="video5" controls playsinline muted preload="metadata">
+                        <source src="投影片5.mp4" type="video/mp4">
+                    </video>
+                    <p style="padding: 10px; color: #cbd5e1;">明管設計模擬 A</p>
+                </div>
+                <div class="video-box">
+                    <video id="video6" controls playsinline muted preload="metadata">
+                        <source src="投影片6.mp4" type="video/mp4">
+                    </video>
+                    <p style="padding: 10px; color: #cbd5e1;">明管設計模擬 B</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 第四區塊：完工播放影片 -->
+    <section id="section4">
+        <div class="container">
+            <h2 class="section-title">第四區塊：接管工程完工實錄</h2>
+            <div class="video-box">
+                <video id="video11" controls playsinline muted preload="metadata">
+                    <source src="投影片11.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <!-- 第五區塊：全景空拍 -->
+    <section id="section5">
+        <div class="container">
+            <h2 class="section-title">第五區塊：社區全景空拍（片尾彩蛋）</h2>
+            <div class="video-box">
+                <video id="video12" controls playsinline muted preload="metadata">
+                    <source src="投影片12.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <!-- GSAP 與滾動控制腳本 -->
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // 手動點擊播放 投影片3.mp4
+        function playVideo3() {
+            const poster = document.getElementById('video3-poster');
+            const btn = document.getElementById('video3-btn');
+            const player = document.getElementById('video3-player');
+
+            poster.style.display = 'none';
+            btn.style.display = 'none';
+            player.style.display = 'block';
+            player.play();
+        }
+
+        // 第二區塊：3D 樓層圖層滾動動態 (3F -> 4F -> 5F 逐層向上伸展與顯現)
+        let stackTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#section2",
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 1
+            }
+        });
+
+        stackTl
+            .to(".layer-3f", { opacity: 0.95, y: 30, rotateX: 5, duration: 1 })
+            .to(".layer-4f", { opacity: 0.95, y: -20, rotateX: 5, duration: 1 })
+            .to(".layer-5f", { opacity: 0.95, y: -70, rotateX: 5, duration: 1 });
+
+        // 自動播放控制工具
+        function setupAutoPlay(sectionId, videoId) {
+            ScrollTrigger.create({
+                trigger: sectionId,
+                start: "top 60%",
+                onEnter: () => {
+                    const v = document.getElementById(videoId);
+                    if(v) v.play().catch(()=>{});
+                },
+                onLeaveBack: () => {
+                    const v = document.getElementById(videoId);
+                    if(v) v.pause();
+                }
+            });
+        }
+
+        // 綁定各區塊影片自動播放
+        setupAutoPlay("#section3", "video5");
+        setupAutoPlay("#section3", "video6");
+        setupAutoPlay("#section4", "video11");
+        setupAutoPlay("#section5", "video12");
+    </script>
+</body>
+</html>
